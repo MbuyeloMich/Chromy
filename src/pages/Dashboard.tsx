@@ -6,6 +6,7 @@ import { fullCurrency } from '../utils';
 import Header from '../components/Header';
 import CoinList from '../components/CoinList';
 import Sparkline from '../components/Sparkline';
+import RecruiterLab from '../components/RecruiterLab';
 import { ErrorBoundary } from '../components/ErrorBoundary';
 import { Card, StatCard, Price, CoinAvatar } from '../components/ui';
 
@@ -64,6 +65,8 @@ const Dashboard: Component = () => {
               <StatCard label="Gainers" value={marketStats().up} variant="success" live={isLive()} />
               <StatCard label="Losers" value={marketStats().down} variant="danger" live={isLive()} />
             </div>
+
+            <RecruiterLab coins={store.coins()} />
 
             <div class="grid lg:grid-cols-[260px_1fr_300px] gap-6">
               <aside class="hidden lg:block space-y-4">
