@@ -12,7 +12,7 @@ const Header: Component = () => {
   return (
     <header class="sticky top-0 z-20 bg-[#09090b]/80 backdrop-blur-md border-b border-white/5">
       <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="h-14 flex items-center justify-between gap-4">
+        <div class="h-14 flex items-center justify-between gap-2 sm:gap-4">
           <Show when={isHome()} fallback={
             <A href="/" class="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group">
               <svg class="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -21,25 +21,21 @@ const Header: Component = () => {
               <span class="text-sm">Back</span>
             </A>
           }>
-            <A href="/" class="flex items-center gap-2 group">
+            <A href="/" class="flex items-center gap-1.5 sm:gap-2 group min-w-0">
               <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none">
-                <rect x="2" y="2" width="28" height="28" rx="8" fill="#0a0a0a" stroke="#3f3f46" stroke-width="1" />
-                <g fill="#22c55e">
-                  <ellipse cx="16" cy="8.8" rx="2.1" ry="3.3" />
-                  <ellipse cx="20.6" cy="10.1" rx="2.1" ry="3.3" transform="rotate(40 20.6 10.1)" />
-                  <ellipse cx="23.2" cy="14.5" rx="2.1" ry="3.3" transform="rotate(80 23.2 14.5)" />
-                  <ellipse cx="22.3" cy="19.8" rx="2.1" ry="3.3" transform="rotate(120 22.3 19.8)" />
-                  <ellipse cx="18.4" cy="23.3" rx="2.1" ry="3.3" transform="rotate(160 18.4 23.3)" />
-                  <ellipse cx="13.6" cy="23.3" rx="2.1" ry="3.3" transform="rotate(200 13.6 23.3)" />
-                  <ellipse cx="9.7" cy="19.8" rx="2.1" ry="3.3" transform="rotate(240 9.7 19.8)" />
-                  <ellipse cx="8.8" cy="14.5" rx="2.1" ry="3.3" transform="rotate(280 8.8 14.5)" />
-                  <ellipse cx="11.4" cy="10.1" rx="2.1" ry="3.3" transform="rotate(320 11.4 10.1)" />
-                </g>
-                <circle cx="16" cy="16" r="2.3" fill="#0a0a0a" />
-                <circle cx="24.8" cy="7.8" r="0.8" fill="#4ade80" />
-                <circle cx="26.1" cy="9.6" r="0.55" fill="#86efac" />
+                <defs>
+                  <linearGradient id="chromy-electric" x1="10" y1="24" x2="24" y2="8" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#39b8ff" />
+                  </linearGradient>
+                </defs>
+                <rect x="5" y="17.8" width="3.2" height="8.2" rx="1.2" fill="#ffffff" />
+                <rect x="10" y="14.8" width="3.2" height="11.2" rx="1.2" fill="#ffffff" />
+                <rect x="15" y="11.4" width="3.2" height="14.6" rx="1.2" fill="#ffffff" />
+                <rect x="20" y="8.4" width="3.2" height="17.6" rx="1.2" fill="url(#chromy-electric)" />
+                <path d="M6.6 17.4L11.6 14.4L16.6 11L21.6 8.1" stroke="url(#chromy-electric)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-              <span class="font-semibold text-white/90 group-hover:text-white transition-colors">Chromy</span>
+              <span class="hidden min-[380px]:inline font-semibold text-white/90 group-hover:text-white transition-colors truncate">Chromy</span>
             </A>
           </Show>
 

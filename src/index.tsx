@@ -1,6 +1,6 @@
 import { render } from 'solid-js/web';
 import { Router, Route } from '@solidjs/router';
-import { lazy, Suspense, For } from 'solid-js';
+import { lazy, Suspense, For, onMount, onCleanup } from 'solid-js';
 import { StoreProvider } from './store';
 import { ListSkeleton, SidebarSkeleton, Skeleton } from './components/ui';
 import './index.css';
@@ -50,6 +50,31 @@ function PageSkeleton(props: { type: 'dashboard' | 'detail' }) {
 }
 
 function App() {
+  onMount(() => {
+    let raf = 0;
+    const updateDrift = (x: number, y: number) => {
+      document.documentElement.style.setProperty('--gx', x.toFixed(2));
+      document.documentElement.style.setProperty('--gy', y.toFixed(2));
+    };
+    const onMove = (e: PointerEvent) => {
+      if (raf) return;
+      const nx = (e.clientX / window.innerWidth - 0.5) * 2;
+      const ny = (e.clientY / window.innerHeight - 0.5) * 2;
+      raf = requestAnimationFrame(() => {
+        updateDrift(nx * 7, ny * 7);
+        raf = 0;
+      });
+    };
+    const reset = () => updateDrift(0, 0);
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('pointerleave', reset);
+    onCleanup(() => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerleave', reset);
+      if (raf) cancelAnimationFrame(raf);
+    });
+  });
+
   return (
     <StoreProvider>
       <Router>

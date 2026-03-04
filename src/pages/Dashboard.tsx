@@ -118,7 +118,7 @@ const Dashboard: Component = () => {
                         <CoinAvatar src={c().image} symbol={c().symbol} size="lg" />
                         <div>
                           <div class="font-medium">{c().name}</div>
-                          <div class="text-xs text-zinc-500">{c().symbol.toUpperCase()} · #{c().market_cap_rank}</div>
+                          <div class="text-xs text-zinc-500">{c().symbol.toUpperCase()} | #{c().market_cap_rank}</div>
                         </div>
                       </div>
                       <div class="mb-4"><Price price={c().current_price} change={c().price_change_percentage_24h} size="lg" class="text-left" /></div>
@@ -127,7 +127,7 @@ const Dashboard: Component = () => {
                         <div><div class="text-zinc-500 mb-0.5">Market Cap</div><div class="font-mono">{fullCurrency(c().market_cap)}</div></div>
                         <div><div class="text-zinc-500 mb-0.5">Volume</div><div class="font-mono">{fullCurrency(c().total_volume)}</div></div>
                       </div>
-                      <A href={`/coin/${c().id}`} class="block w-full py-2 text-center text-sm bg-white/5 hover:bg-white/10 rounded-lg transition-colors">View Details →</A>
+                      <A href={`/coin/${c().id}`} class="block w-full py-2 text-center text-sm bg-white/5 hover:bg-white/10 rounded-lg transition-colors">View Details -></A>
                     </Card>
                   )}
                 </Show>

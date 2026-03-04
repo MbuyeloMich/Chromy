@@ -160,7 +160,7 @@ export const StatCard: Component<StatCardProps> = (rawProps) => {
         <span class="text-[10px] text-zinc-500 uppercase">{props.label}</span>
         <LiveDot show={props.live} />
       </div>
-      <div class={`text-lg font-semibold font-mono ${valueColor()}`}>{props.value}</div>
+      <div class={`text-sm sm:text-lg leading-tight break-all font-semibold font-mono ${valueColor()}`}>{props.value}</div>
     </Card>
   );
 };
@@ -191,7 +191,7 @@ export const MiniStatCard: Component<MiniStatCardProps> = (rawProps) => {
         <span class="text-[10px] text-zinc-500 uppercase">{props.label}</span>
         <LiveDot show={props.live} />
       </div>
-      <div class={`text-sm font-mono ${valueColor()}`}>{props.value}</div>
+      <div class={`text-xs sm:text-sm leading-tight break-all font-mono ${valueColor()}`}>{props.value}</div>
     </div>
   );
 };

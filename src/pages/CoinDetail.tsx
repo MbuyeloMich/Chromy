@@ -69,22 +69,22 @@ const CoinDetail: Component = () => {
                 {(c) => (
                   <div class="grid lg:grid-cols-[1fr_340px] gap-6">
                     <div class="space-y-6">
-                      <div class="flex items-start justify-between gap-4">
-                        <div class="flex items-center gap-4">
+                      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                        <div class="flex items-start sm:items-center gap-3 sm:gap-4 min-w-0">
                           <CoinAvatar src={c().image.large} symbol={c().symbol} size="xl" class="ring-2 ring-white/10" />
-                          <div>
-                            <div class="flex items-center gap-2 mb-1">
-                              <h1 class="text-2xl font-semibold">{c().name}</h1>
+                          <div class="min-w-0">
+                            <div class="flex flex-wrap items-center gap-2 mb-1">
+                              <h1 class="text-xl sm:text-2xl font-semibold truncate">{c().name}</h1>
                               <span class="text-sm text-zinc-500 uppercase">{c().symbol}</span>
                               <span class="px-2 py-0.5 text-xs text-zinc-400 bg-white/5 rounded-full">#{c().market_cap_rank}</span>
                             </div>
-                            <div class="flex items-baseline gap-2">
+                            <div class="flex flex-wrap items-baseline gap-2">
                               <Price price={price()} change={change()} size="lg" class="text-left" />
                               <ConnectionIndicator state={store.connectionState()} onReconnect={store.reconnect} class="ml-2" />
                             </div>
                           </div>
                         </div>
-                        <Button variant={isWatched() ? 'secondary' : 'ghost'} onClick={() => store.toggleWatch(params.id)} class={isWatched() ? 'text-amber-400' : ''}>
+                        <Button variant={isWatched() ? 'secondary' : 'ghost'} onClick={() => store.toggleWatch(params.id)} class={`w-full sm:w-auto ${isWatched() ? 'text-amber-400' : ''}`}>
                           <StarIcon filled={isWatched()} />
                           {isWatched() ? 'Watching' : 'Watch'}
                         </Button>

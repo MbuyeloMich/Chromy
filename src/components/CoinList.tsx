@@ -25,7 +25,7 @@ const CoinList: Component<Props> = (props) => {
     return (
       <button onClick={() => props.onSort(p.field)} class={`flex items-center gap-1 text-[10px] uppercase tracking-wider transition-colors ${active() ? 'text-white' : 'text-zinc-600 hover:text-zinc-400'}`}>
         {p.label}
-        <Show when={active()}><span class="text-emerald-400">{props.sortDir === 'asc' ? '↑' : '↓'}</span></Show>
+        <Show when={active()}><span class="text-emerald-400">{props.sortDir === 'asc' ? '^' : 'v'}</span></Show>
       </button>
     );
   };
@@ -65,7 +65,7 @@ const CoinList: Component<Props> = (props) => {
                     <div class="min-w-0">
                       <div class="font-medium text-sm truncate flex items-center gap-2">
                         {coin().name}
-                        <Show when={props.isWatched(coin().id)}><span class="text-amber-400 text-xs">★</span></Show>
+                        <Show when={props.isWatched(coin().id)}><span class="text-amber-400 text-xs">*</span></Show>
                       </div>
                       <div class="text-xs text-zinc-500 uppercase">{coin().symbol}</div>
                     </div>
@@ -73,7 +73,15 @@ const CoinList: Component<Props> = (props) => {
                   <div class="hidden sm:block h-8 opacity-60 group-hover:opacity-100 transition-opacity">
                     <Sparkline data={coin().sparkline_in_7d?.price} up={coin().price_change_percentage_24h >= 0} livePrice={coin().current_price} />
                   </div>
-                  <Price price={coin().current_price} change={coin().price_change_percentage_24h} size="md" />
+                  <div class="flex items-center gap-1.5">
+                    <Price price={coin().current_price} change={coin().price_change_percentage_24h} size="md" />
+                    <button
+                      onClick={(e) => { e.preventDefault(); e.stopPropagation(); props.onWatch(coin().id); }}
+                      class={`sm:hidden flex items-center justify-center w-7 h-7 rounded-lg transition-all ${props.isWatched(coin().id) ? 'text-amber-400 bg-amber-400/10' : 'text-zinc-500 hover:text-zinc-300 hover:bg-white/5'}`}
+                    >
+                      <StarIcon filled={props.isWatched(coin().id)} />
+                    </button>
+                  </div>
                   <button
                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); props.onWatch(coin().id); }}
                     class={`hidden sm:flex items-center justify-center w-8 h-8 rounded-lg transition-all ${props.isWatched(coin().id) ? 'text-amber-400 hover:bg-amber-400/10' : 'text-zinc-700 hover:text-zinc-400 hover:bg-white/5 opacity-0 group-hover:opacity-100'}`}
