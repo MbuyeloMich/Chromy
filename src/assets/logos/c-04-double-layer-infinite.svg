@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <filter id="blue-glow" x="0" y="0" width="128" height="128" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <g filter="url(#blue-glow)">
+    <path d="M96 30C88 22 77 18 64 18C39 18 18 39 18 64C18 89 39 110 64 110C77 110 88 106 96 98L84 86C79 91 72 94 64 94C48 94 34 80 34 64C34 48 48 34 64 34C72 34 79 37 84 42L96 30Z" fill="#FFFFFF"/>
+    <path d="M104 38C96 30 85 26 74 26C49 26 28 47 28 72C28 83 32 93 40 100L52 88C47 83 44 78 44 72C44 56 58 42 74 42C80 42 85 44 90 48L104 38Z" fill="#60A5FA" fill-opacity="0.9"/>
+  </g>
+</svg>

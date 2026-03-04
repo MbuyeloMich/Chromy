@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="neon-purple" x1="20" y1="104" x2="108" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <path d="M100 24H44L20 48V80L44 104H100V88H50L36 74V54L50 40H100V24Z" fill="url(#neon-purple)"/>
+</svg>

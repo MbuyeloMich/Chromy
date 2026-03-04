@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <filter id="orbit-glow" x="4" y="4" width="120" height="120" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="orbit-cyan" x1="18" y1="98" x2="110" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#67E8F9"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#orbit-glow)">
+    <path d="M96 30C88 22 77 18 64 18C39 18 18 39 18 64C18 89 39 110 64 110C77 110 88 106 96 98L83 85C78 90 72 94 64 94C48 94 34 80 34 64C34 48 48 34 64 34C72 34 78 38 83 43L96 30Z" fill="#FFFFFF"/>
+    <ellipse cx="64" cy="64" rx="47" ry="20" stroke="url(#orbit-cyan)" stroke-width="4"/>
+    <ellipse cx="64" cy="64" rx="30" ry="47" stroke="url(#orbit-cyan)" stroke-width="3" stroke-opacity="0.85"/>
+  </g>
+</svg>

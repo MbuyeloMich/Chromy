@@ -1,4 +1,5 @@
 import type { Currency } from './types';
+import { createSignal } from 'solid-js';
 
 const FX_FROM_USD: Record<Currency, number> = {
   ZAR: 18.5,
@@ -14,22 +15,22 @@ const SYMBOL: Record<Currency, string> = {
   EUR: '€',
 };
 
-let currentCurrency: Currency = 'ZAR';
+const [activeCurrency, setActiveCurrency] = createSignal<Currency>('ZAR');
 
 export function setCurrencyFormat(currency: Currency) {
-  currentCurrency = currency;
+  setActiveCurrency(currency);
 }
 
 export function getCurrencyFormat(): Currency {
-  return currentCurrency;
+  return activeCurrency();
 }
 
 function toActiveCurrency(n: number): number {
-  return n * FX_FROM_USD[currentCurrency];
+  return n * FX_FROM_USD[activeCurrency()];
 }
 
 function symbol(): string {
-  return SYMBOL[currentCurrency];
+  return SYMBOL[activeCurrency()];
 }
 
 // Format number as currency (active selection)
