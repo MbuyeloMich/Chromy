@@ -1,18 +1,20 @@
 import type { Currency } from './types';
 
 const FX_FROM_USD: Record<Currency, number> = {
+  ZAR: 18.5,
   USD: 1,
   GBP: 0.79,
   EUR: 0.92,
 };
 
 const SYMBOL: Record<Currency, string> = {
+  ZAR: 'R',
   USD: '$',
   GBP: '£',
   EUR: '€',
 };
 
-let currentCurrency: Currency = 'USD';
+let currentCurrency: Currency = 'ZAR';
 
 export function setCurrencyFormat(currency: Currency) {
   currentCurrency = currency;

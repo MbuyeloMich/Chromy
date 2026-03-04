@@ -1,7 +1,7 @@
 import { createStore, produce, reconcile } from 'solid-js/store';
 import { createResource, createEffect, createMemo, createContext, useContext, batch, on, onCleanup, createSignal, createSelector } from 'solid-js';
 import { getCoins, realtime, onSparklinesReady, type ConnectionState, type RealtimeData } from './api';
-import type { Coin, SortField, SortConfig, Currency } from './types';
+import type { Coin, SortField, SortConfig, Currency, ThemeMode } from './types';
 import { getSortValue, setCurrencyFormat } from './utils';
 
 interface State {
@@ -10,6 +10,7 @@ interface State {
   watchlist: string[];
   watchlistOnly: boolean;
   currency: Currency;
+  theme: ThemeMode;
 }
 
 const load = <T,>(key: string, fallback: T): T => {
@@ -27,7 +28,8 @@ function createAppStore() {
     sort: load('sort', { field: 'market_cap', direction: 'desc' }),
     watchlist: load('watchlist', ['bitcoin', 'ethereum']),
     watchlistOnly: false,
-    currency: load<Currency>('currency', 'USD'),
+    currency: load<Currency>('currency', 'ZAR'),
+    theme: load<ThemeMode>('theme', 'dark'),
   });
 
   const [coinsStore, setCoinsStore] = createStore<{ list: Coin[]; byId: Record<string, number> }>({ 
@@ -82,7 +84,14 @@ function createAppStore() {
     localStorage.setItem('currency', JSON.stringify(currency));
     setCurrencyFormat(currency);
   }, { defer: true }));
+  createEffect(on(() => state.theme, (theme) => {
+    localStorage.setItem('theme', JSON.stringify(theme));
+    document.documentElement.classList.toggle('theme-light', theme === 'light');
+    document.documentElement.style.colorScheme = theme;
+  }, { defer: true }));
   setCurrencyFormat(state.currency);
+  document.documentElement.classList.toggle('theme-light', state.theme === 'light');
+  document.documentElement.style.colorScheme = state.theme;
 
   const isWatchedSelector = createSelector(
     () => state.watchlist,
@@ -95,6 +104,7 @@ function createAppStore() {
   const toggleWatchlistOnly = () => setState('watchlistOnly', !state.watchlistOnly);
   const setWatchlistOnly = (v: boolean) => setState('watchlistOnly', v);
   const setCurrency = (currency: Currency) => setState('currency', currency);
+  const toggleTheme = () => setState('theme', state.theme === 'light' ? 'dark' : 'light');
 
   const setSort = (field: SortField) => {
     setState('sort', produce((s) => {
@@ -187,7 +197,7 @@ function createAppStore() {
     filtered, sorted, watched, stats,
     getCoinById,
     isWatched: isWatchedSelector,
-    setSearch, clearSearch, setSort, toggleWatch, toggleWatchlistOnly, setWatchlistOnly, setCurrency, refetch,
+    setSearch, clearSearch, setSort, toggleWatch, toggleWatchlistOnly, setWatchlistOnly, setCurrency, toggleTheme, refetch,
   };
 }
 

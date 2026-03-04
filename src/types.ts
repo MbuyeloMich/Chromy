@@ -51,4 +51,5 @@ export interface SortConfig {
   direction: SortDirection;
 }
 
-export type Currency = 'USD' | 'GBP' | 'EUR';
+export type Currency = 'ZAR' | 'USD' | 'GBP' | 'EUR';
+export type ThemeMode = 'dark' | 'light';

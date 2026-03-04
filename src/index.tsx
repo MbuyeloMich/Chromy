@@ -14,7 +14,7 @@ const STAT_ITEMS = [0, 1, 2, 3];
 function PageSkeleton(props: { type: 'dashboard' | 'detail' }) {
   return (
     <div class="min-h-screen galaxy-bg">
-      <header class="sticky top-0 z-20 bg-[#09090b]/80 backdrop-blur-md border-b border-white/5">
+      <header class="sticky top-0 z-20 app-header border-b border-white/5">
         <div class="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
           <div class="flex items-center gap-2"><Skeleton class="w-7 h-7 rounded-lg" /><Skeleton class="w-24 h-5" /></div>
           <Skeleton class="hidden sm:block w-64 h-9 rounded-lg" />
