@@ -1,59 +1,52 @@
 # Chromy
 
-🚀 Real-time crypto dashboard built with SolidJS, Vite, and Binance market data.
+Chromy tracks crypto prices in a clean dashboard.
 
-## ✨ What It Does
+Born in the noise of nonstop crypto markets, **Chromy** started as a simple idea: make real-time market intelligence feel clear, fast, and human. Built with SolidJS, Vite, and live Binance data, Chromy turns chaotic price movement into a clean command center for builders, traders, and curious newcomers chasing the next signal.
 
-- 📈 Live market tracking for top `USDT` crypto pairs
-- 🔄 Real-time updates via Binance WebSocket
-- 🔍 Search, sort, and filter coins quickly
-- ⭐ Watchlist with local persistence
-- 🧠 Coin detail pages with chart, order book, and recent trades
-- 💱 Prices formatted in South African Rand (`R`)
+<p align="center">
+  <img src="./assets/binance.svg" alt="Binance" width="420" />
+</p>
 
-## 🧩 Core Features
+## Tech Stack
 
-### 📊 Dashboard
+<p align="center">
+  <img src="https://cdn.simpleicons.org/solid/2C4F7C" alt="SolidJS" width="50" />
+  <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="50" />
+  <img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="50" />
+  <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="50" />
+  <img src="https://cdn.simpleicons.org/binance/F0B90B" alt="Binance API" width="50" />
+  <img src="https://cdn.simpleicons.org/websocket/FFFFFF" alt="WebSocket" width="50" />
+</p>
 
-- Market overview cards:
-  - Market Cap
-  - 24h Volume
-  - Gainers
-  - Losers
-- Top gainers / losers side panels
-- Search + sorting controls
-- Watchlist-only mode toggle
+| Icon | Stack |
+|---|---|
+| <img src="https://cdn.simpleicons.org/solid/2C4F7C" alt="SolidJS" width="24" /> | SolidJS |
+| <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript" width="24" /> | TypeScript |
+| <img src="https://cdn.simpleicons.org/vite/646CFF" alt="Vite" width="24" /> | Vite |
+| <img src="https://cdn.simpleicons.org/tailwindcss/06B6D4" alt="Tailwind CSS" width="24" /> | Tailwind CSS |
+| <img src="./assets/binance.svg" alt="Binance" width="68" /> | Binance REST + WebSocket |
+| <img src="https://cdn.simpleicons.org/websocket/FFFFFF" alt="WebSocket" width="24" /> | WebSocket Streaming |
 
-### 🪙 Coin Detail
+## Top 5 Coins
 
-- Interactive ranges: `24H`, `7D`, `30D`, `90D`, `1Y`
-- Live order book
-- Recent trades feed
-- Market stats and 24h range
+<p>
+  <img src="https://cdn.simpleicons.org/bitcoin/F7931A" alt="Bitcoin (BTC)" width="34" />
+  <img src="https://cdn.simpleicons.org/ethereum/627EEA" alt="Ethereum (ETH)" width="34" />
+  <img src="https://cdn.simpleicons.org/binance/F0B90B" alt="BNB" width="34" />
+  <img src="https://cdn.simpleicons.org/solana/14F195" alt="Solana (SOL)" width="34" />
+  <img src="https://cdn.simpleicons.org/xrp/FFFFFF" alt="XRP" width="34" />
+</p>
 
-### ⚡ Real-Time Engine
+## Features
 
-- Shared WebSocket manager
-- Connection states: `connected`, `connecting`, `disconnected`
-- Auto reconnect with backoff
-- Buffered updates for smoother rendering
+- Real-time updates using Binance WebSocket
+- Dashboard + coin detail pages
+- Search, sort, and watchlist mode
+- Keyboard shortcuts (`/`, `W`, `R`, `Esc`)
+- ZAR display formatting (`R`)
 
-## ⌨️ Keyboard Shortcuts
-
-- `/` focus search
-- `W` toggle watchlist
-- `R` refresh
-- `Esc` clear search
-
-## 🛠 Tech Stack
-
-- SolidJS
-- TypeScript
-- Vite
-- Tailwind CSS v4
-- Binance REST + WebSocket APIs
-
-## 📁 Project Structure
+## Project Structure
 
 ```text
 src/
@@ -64,61 +57,31 @@ src/
   index.tsx
   index.css
   components/
-    Header.tsx
-    CoinList.tsx
-    PriceChart.tsx
-    OrderBook.tsx
-    RecentTrades.tsx
-    Sparkline.tsx
-    ui.tsx
-    ErrorBoundary.tsx
   pages/
-    Dashboard.tsx
-    CoinDetail.tsx
-    NotFound.tsx
 public/
   favicon.svg
+assets/
+  binance.svg
 ```
 
-## 🚦 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm
-
-### Install
+## Run Locally
 
 ```bash
 npm install
-```
-
-### Run (Dev)
-
-```bash
 npm run dev
 ```
 
-Default URL:
-`http://127.0.0.1:5173`
-
-### Build + Preview
+## Build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## 📡 Data Sources
+## Data Source
 
-Binance public endpoints (no API key required):
+- Binance public REST + WebSocket endpoints
 
-- `GET /api/v3/ticker/24hr`
-- `GET /api/v3/klines`
-- `GET /api/v3/depth`
-- `GET /api/v3/trades`
-- `wss://stream.binance.com:9443/ws`
-
-## 👥 Contributors
+## Contributors
 
 https://github.com/MbuyeloMich/Chronos/graphs/contributors
