@@ -50,3 +50,5 @@ export interface SortConfig {
   field: SortField;
   direction: SortDirection;
 }
+
+export type Currency = 'USD' | 'GBP' | 'EUR';

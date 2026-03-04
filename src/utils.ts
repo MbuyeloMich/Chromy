@@ -1,40 +1,66 @@
-const USD_TO_ZAR = 18.5;
+import type { Currency } from './types';
 
-function toZar(n: number): number {
-  return n * USD_TO_ZAR;
+const FX_FROM_USD: Record<Currency, number> = {
+  USD: 1,
+  GBP: 0.79,
+  EUR: 0.92,
+};
+
+const SYMBOL: Record<Currency, string> = {
+  USD: '$',
+  GBP: '£',
+  EUR: '€',
+};
+
+let currentCurrency: Currency = 'USD';
+
+export function setCurrencyFormat(currency: Currency) {
+  currentCurrency = currency;
 }
 
-// Format number as currency (ZAR)
+export function getCurrencyFormat(): Currency {
+  return currentCurrency;
+}
+
+function toActiveCurrency(n: number): number {
+  return n * FX_FROM_USD[currentCurrency];
+}
+
+function symbol(): string {
+  return SYMBOL[currentCurrency];
+}
+
+// Format number as currency (active selection)
 export function fmt(n: number): string {
-  if (!n || isNaN(n)) return 'R0.00';
-  const v = toZar(n);
-  if (v >= 1e12) return `R${(v / 1e12).toFixed(2)}T`;
-  if (v >= 1e9) return `R${(v / 1e9).toFixed(2)}B`;
-  if (v >= 1e6) return `R${(v / 1e6).toFixed(2)}M`;
-  if (v >= 1e3) return `R${v.toLocaleString('en-ZA', { maximumFractionDigits: 0 })}`;
-  if (v >= 1) return `R${v.toFixed(2)}`;
-  if (v >= 0.01) return `R${v.toFixed(4)}`;
-  return `R${v.toFixed(6)}`;
+  if (!n || isNaN(n)) return `${symbol()}0.00`;
+  const v = toActiveCurrency(n);
+  if (v >= 1e12) return `${symbol()}${(v / 1e12).toFixed(2)}T`;
+  if (v >= 1e9) return `${symbol()}${(v / 1e9).toFixed(2)}B`;
+  if (v >= 1e6) return `${symbol()}${(v / 1e6).toFixed(2)}M`;
+  if (v >= 1e3) return `${symbol()}${v.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+  if (v >= 1) return `${symbol()}${v.toFixed(2)}`;
+  if (v >= 0.01) return `${symbol()}${v.toFixed(4)}`;
+  return `${symbol()}${v.toFixed(6)}`;
 }
 
-// Compact currency number in ZAR
+// Compact currency number in active currency
 export function compactCurrency(n: number): string {
-  if (!n || isNaN(n)) return 'R0';
-  const v = toZar(n);
-  if (v >= 1e12) return `R${(v / 1e12).toFixed(2)}T`;
-  if (v >= 1e9) return `R${(v / 1e9).toFixed(2)}B`;
-  if (v >= 1e6) return `R${(v / 1e6).toFixed(2)}M`;
-  if (v >= 1e3) return `R${(v / 1e3).toFixed(2)}K`;
-  return `R${v.toFixed(2)}`;
+  if (!n || isNaN(n)) return `${symbol()}0`;
+  const v = toActiveCurrency(n);
+  if (v >= 1e12) return `${symbol()}${(v / 1e12).toFixed(2)}T`;
+  if (v >= 1e9) return `${symbol()}${(v / 1e9).toFixed(2)}B`;
+  if (v >= 1e6) return `${symbol()}${(v / 1e6).toFixed(2)}M`;
+  if (v >= 1e3) return `${symbol()}${(v / 1e3).toFixed(2)}K`;
+  return `${symbol()}${v.toFixed(2)}`;
 }
 
-// Full currency number in ZAR (no T/B/M/K shortening)
+// Full currency number in active currency (no T/B/M/K shortening)
 export function fullCurrency(n: number): string {
-  if (!n || isNaN(n)) return 'R0';
-  const v = toZar(n);
-  if (v >= 1) return `R${v.toLocaleString('en-ZA', { maximumFractionDigits: 2 })}`;
-  if (v >= 0.01) return `R${v.toFixed(4)}`;
-  return `R${v.toFixed(6)}`;
+  if (!n || isNaN(n)) return `${symbol()}0`;
+  const v = toActiveCurrency(n);
+  if (v >= 1) return `${symbol()}${v.toLocaleString('en-US', { maximumFractionDigits: 2 })}`;
+  if (v >= 0.01) return `${symbol()}${v.toFixed(4)}`;
+  return `${symbol()}${v.toFixed(6)}`;
 }
 
 // Format percentage with sign

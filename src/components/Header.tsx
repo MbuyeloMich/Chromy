@@ -24,16 +24,17 @@ const Header: Component = () => {
             <A href="/" class="flex items-center gap-1.5 sm:gap-2 group min-w-0">
               <svg class="w-7 h-7" viewBox="0 0 32 32" fill="none">
                 <defs>
-                  <linearGradient id="chromy-electric" x1="10" y1="24" x2="24" y2="8" gradientUnits="userSpaceOnUse">
-                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
-                    <stop offset="100%" stop-color="#39b8ff" />
+                  <linearGradient id="chromy-flow-accent" x1="7" y1="26" x2="25" y2="8" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#5fd4ff" />
+                    <stop offset="100%" stop-color="#2ea8ff" />
                   </linearGradient>
                 </defs>
-                <rect x="5" y="17.8" width="3.2" height="8.2" rx="1.2" fill="#ffffff" />
-                <rect x="10" y="14.8" width="3.2" height="11.2" rx="1.2" fill="#ffffff" />
-                <rect x="15" y="11.4" width="3.2" height="14.6" rx="1.2" fill="#ffffff" />
-                <rect x="20" y="8.4" width="3.2" height="17.6" rx="1.2" fill="url(#chromy-electric)" />
-                <path d="M6.6 17.4L11.6 14.4L16.6 11L21.6 8.1" stroke="url(#chromy-electric)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                <g stroke-linecap="round" stroke-width="2.2">
+                  <path d="M6.5 23.5L15 8.5" stroke="#ffffff" />
+                  <path d="M11.4 23.5L19.9 8.5" stroke="#ffffff" />
+                  <path d="M16.3 23.5L24.8 8.5" stroke="url(#chromy-flow-accent)" />
+                </g>
+                <path d="M7.8 20.8L13.2 17.6L18.4 14.2L23.4 10.8" stroke="url(#chromy-flow-accent)" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
               <span class="hidden min-[380px]:inline font-semibold text-white/90 group-hover:text-white transition-colors truncate">Chromy</span>
             </A>
@@ -46,6 +47,29 @@ const Header: Component = () => {
           </Show>
 
           <div class="flex items-center gap-1">
+            <div class="flex items-center gap-1 mr-1">
+              <button
+                onClick={() => store.setCurrency('USD')}
+                class={`w-7 h-7 rounded-md text-[10px] font-semibold transition-colors ${store.state.currency === 'USD' ? 'bg-white/20 text-white' : 'bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10'}`}
+                title="USD"
+              >
+                $
+              </button>
+              <button
+                onClick={() => store.setCurrency('GBP')}
+                class={`w-7 h-7 rounded-md text-[10px] font-semibold transition-colors ${store.state.currency === 'GBP' ? 'bg-white/20 text-white' : 'bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10'}`}
+                title="GBP"
+              >
+                £
+              </button>
+              <button
+                onClick={() => store.setCurrency('EUR')}
+                class={`w-7 h-7 rounded-md text-[10px] font-semibold transition-colors ${store.state.currency === 'EUR' ? 'bg-white/20 text-white' : 'bg-white/5 text-zinc-400 hover:text-white hover:bg-white/10'}`}
+                title="EUR"
+              >
+                €
+              </button>
+            </div>
             <Show when={isHome()}>
               <Button variant="ghost" size="sm" class="sm:hidden" onClick={() => setShowSearch(!showSearch())}>
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
