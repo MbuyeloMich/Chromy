@@ -1,53 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
   <defs>
-    <linearGradient id="box-bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#000000"/>
-      <stop offset="100%" stop-color="#0a0a0a"/>
+    <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
     </linearGradient>
-    <linearGradient id="splash-primary" x1="256" y1="80" x2="256" y2="432" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22c55e"/>
-      <stop offset="50%" stop-color="#16a34a"/>
-      <stop offset="100%" stop-color="#15803d"/>
-    </linearGradient>
-    <linearGradient id="splash-glow" x1="256" y1="120" x2="256" y2="392" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4ade80"/>
-      <stop offset="100%" stop-color="#22c55e"/>
-    </linearGradient>
-    <radialGradient id="ripple-glow" cx="256" cy="256" r="180" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#86efac" stop-opacity="0.8"/>
-      <stop offset="40%" stop-color="#22c55e" stop-opacity="0.4"/>
-      <stop offset="100%" stop-color="#16a34a" stop-opacity="0"/>
-    </radialGradient>
-    <radialGradient id="core-glow" cx="256" cy="256" r="60" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#bbf7d0"/>
-      <stop offset="60%" stop-color="#4ade80"/>
-      <stop offset="100%" stop-color="#22c55e"/>
-    </radialGradient>
-    <filter id="liquid-blur" x="-50%" y="-50%" width="200%" height="200%" filterUnits="userSpaceOnUse">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="8"/>
-    </filter>
-    <filter id="core-glow-filter" x="-50%" y="-50%" width="200%" height="200%" filterUnits="userSpaceOnUse">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="12"/>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
-  <rect x="20" y="20" width="472" height="472" rx="100" fill="url(#box-bg)"/>
-  <ellipse cx="256" cy="256" rx="180" ry="170" fill="url(#ripple-glow)" opacity="0.6"/>
-  <g filter="url(#liquid-blur)" opacity="0.85">
-    <path d="M256 100 C220 100 190 130 185 170 C180 200 200 225 230 235 C200 225 180 240 175 275 C170 310 195 345 230 355 C200 350 180 370 180 400 C180 430 210 455 256 455 C302 455 332 430 332 400 C332 370 312 350 282 355 C317 345 342 310 337 275 C332 240 312 225 282 235 C312 225 332 200 327 170 C322 130 292 100 256 100Z" fill="url(#splash-primary)"/>
-  </g>
-  <g opacity="0.7">
-    <path d="M256 130 C230 130 205 150 200 180 C195 205 210 225 235 232 C215 225 200 235 198 260 C195 285 210 310 235 318 C215 312 198 328 198 355 C198 380 220 400 256 400 C292 400 314 380 314 355 C314 328 297 312 277 318 C302 310 317 285 314 260 C312 235 297 225 277 232 C302 225 317 205 312 180 C307 150 282 130 256 130Z" fill="url(#splash-glow)"/>
-  </g>
-  <g opacity="0.5">
-    <circle cx="180" cy="200" r="35" fill="#22c55e"/>
-    <circle cx="332" cy="312" r="28" fill="#22c55e"/>
-    <circle cx="310" cy="170" r="22" fill="#4ade80"/>
-    <circle cx="200" cy="340" r="25" fill="#16a34a"/>
-  </g>
-  <g filter="url(#core-glow-filter)">
-    <circle cx="256" cy="256" r="45" fill="url(#core-glow)"/>
-  </g>
-  <circle cx="256" cy="256" r="28" fill="#bbf7d0"/>
+  
+  <!-- Outer splash shape (wave-like) -->
+  <path d="M 100 20 C 140 20 170 35 180 60 C 185 75 185 95 175 110 L 170 120 C 165 130 155 135 145 135 C 155 125 160 110 155 95 C 150 75 135 60 110 55 C 130 60 145 75 148 95 C 152 120 140 140 115 145 L 120 155 C 130 152 140 155 145 165 C 150 175 145 185 130 190 C 110 195 85 190 75 175 C 65 160 70 140 85 135 C 75 130 65 125 60 115 C 45 90 50 60 75 40 C 85 30 92 22 100 20 Z" 
+        fill="url(#greenGradient)" filter="url(#glow)"/>
+  
+  <!-- Inner splash accent -->
+  <path d="M 100 50 C 125 55 140 70 143 90 C 145 110 135 125 115 130 L 110 138 C 105 130 95 125 85 128 C 75 132 68 142 72 155 C 80 175 100 185 115 180 C 110 170 115 155 125 150 C 130 147 138 150 140 158 C 138 140 128 125 115 120 L 120 110 C 135 105 145 90 142 72 C 140 55 128 42 110 40 C 105 42 103 45 100 50 Z" 
+        fill="#86efac" opacity="0.8" filter="url(#glow)"/>
+  
+  <!-- Core highlight -->
+  <circle cx="100" cy="80" r="18" fill="#bbf7d0" opacity="0.9" filter="url(#glow)"/>
   <ellipse cx="240" cy="235" rx="15" ry="10" fill="#ffffff" opacity="0.3"/>
   <g stroke="#22c55e" stroke-width="1.5" fill="none" opacity="0.25">
     <ellipse cx="256" cy="256" rx="140" ry="135"/>
