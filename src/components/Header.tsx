@@ -21,10 +21,10 @@ const Header: Component = () => {
               <span class="text-sm">Back</span>
             </A>
           }>
-            <A href="/" class="flex items-center gap-1.5 sm:gap-2 group min-w-0">
+            <button onClick={() => window.location.reload()} class="flex items-center gap-1.5 sm:gap-2 group min-w-0 hover:opacity-80 transition-opacity">
               <img class="w-7 h-7" src="/favicon.svg" alt="Chromy logo" />
               <span class="hidden min-[380px]:inline font-semibold text-emerald-400 group-hover:text-emerald-300 transition-colors truncate">Chromy</span>
-            </A>
+            </button>
           </Show>
 
           <Show when={isHome()}>
